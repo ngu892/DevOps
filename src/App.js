@@ -9,7 +9,9 @@ function App() {
     <div className="App">
       <Router>
         <NavBar/>
-        <Home/>
+        <Routes>
+          <Route path="/" exact Component={Home}></Route>
+        </Routes>
         <Footer/>
       </Router>
     </div>
