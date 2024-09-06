@@ -5,11 +5,6 @@ import '../styles/NavBar.css'
 
 function NavBar() {
 
-  const [isDropDownOpen, setDropDown] = useState(false);
-  const accountDropDown = () => {
-    setDropDown(!isDropDownOpen)
-  }
-
   return (
     <div className="navbar">
       <div className="leftBar">

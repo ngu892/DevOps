@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import BuildingOwner from './pages/BuildingOwner'
+import ManageListings from './pages/ManageListings'
+import ManageEnquiries from './pages/ManageEnquiries'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/register" Component={Register}></Route>
           
           <Route path="/building-owner" Component={BuildingOwner}></Route>
+          <Route path="/manage-listings" Component={ManageListings}></Route>
+          <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
         </Routes>
         <Footer/>
       </Router>
