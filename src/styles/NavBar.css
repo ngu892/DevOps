@@ -6,7 +6,7 @@
     flex-direction: row;
 }
 
-.navbar .leftBar {
+.leftBar {
     flex: 50%;
     height: 100%;
     display: flex;
@@ -14,16 +14,27 @@
     padding-left: 150px;
 }
 
-.navbar .leftBar img {
+.leftBar img {
     width: 100px;
 }
 
-.navbar .rightBar {
+.rightBar {
     flex: 50%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.rightBar a {
+    margin: 0;
+    color: white;
+    font-size: 16px;
+}
+
+.account {
+    position: relative;
+    margin-left: 16px;
 }
 
 .navbar a {
@@ -37,10 +48,27 @@
     border: none;
     color: white;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.navbar .rightBar svg {
-    font-size: 40px;
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: -20%;
+    background-color: rgb(47, 46, 46);
+    display: none;
+    background-color: rgb(74, 72, 72);
+}
+
+.account:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -67,9 +95,7 @@
 
 @media only screen and (min-width: 600px) {
     .navbar .rightBar button {
-        display: none;
-    }
-    .hiddenLinks {
-        display: none;
+        display: block;
     }
 }
+
