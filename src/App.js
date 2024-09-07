@@ -7,6 +7,8 @@ import Register from './pages/Register'
 import BuildingOwner from './pages/BuildingOwner'
 import ManageListings from './pages/ManageListings'
 import ManageEnquiries from './pages/ManageEnquiries'
+import ResidentCommunication from './pages/ResidentCommunication'
+import ResidentFeedback from './pages/ResidentFeedback'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
           <Route path="/building-owner" Component={BuildingOwner}></Route>
           <Route path="/manage-listings" Component={ManageListings}></Route>
           <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
+
+          <Route path="/communication" element={<ResidentCommunication />} />
+          <Route path="/feedback" element={<ResidentFeedback />} />
+  
         </Routes>
         <Footer/>
       </Router>
