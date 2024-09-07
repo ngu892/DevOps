@@ -9,6 +9,8 @@ import ManageListings from './pages/ManageListings'
 import ManageEnquiries from './pages/ManageEnquiries'
 import ResidentCommunication from './pages/ResidentCommunication'
 import ResidentFeedback from './pages/ResidentFeedback'
+import PropertyFee from './pages/Propertyfee'
+import MaintenanceRepair from './pages/MaintenanceRepair'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
 
           <Route path="/communication" element={<ResidentCommunication />} />
           <Route path="/feedback" element={<ResidentFeedback />} />
+
+          <Route path="/propertyfee" element={<PropertyFee />} />
+          <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
   
         </Routes>
         <Footer/>
