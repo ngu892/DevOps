@@ -99,3 +99,26 @@
     }
 }
 
+.resident {
+    position: relative;
+    margin-left: 16px;
+}
+
+.resident:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: -20%;
+    display: none;
+}
+
+.dropdown a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
