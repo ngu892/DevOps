@@ -14,6 +14,13 @@ function NavBar() {
         <Link to="/"> Home </Link>
         <Link to="/listings"> Listings </Link>
         <Link to="/contact"> Contact </Link>
+      <div className="resident">
+          <button> Resident </button>
+          <div className="dropdown">
+            <Link to="/communication"> Communication </Link>
+            <Link to="/Feedback"> Feedback </Link>
+          </div>
+        </div>
         <div className="account">
           <button> Account </button>
           <div className="dropdown">
