@@ -14,6 +14,15 @@ function NavBar() {
         <Link to="/"> Home </Link>
         <Link to="/listings"> Listings </Link>
         <Link to="/contact"> Contact </Link>
+    
+    <div className="starta">
+          <button> Starta </button>
+          <div className="dropdown">
+            <Link to="/Propertyfee"> Propertyfee </Link>
+            <Link to="/MaintenanceRepair"> MaintenanceRepair </Link>
+          </div>
+        </div>
+    
       <div className="resident">
           <button> Resident </button>
           <div className="dropdown">
