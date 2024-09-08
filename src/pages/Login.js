@@ -1,4 +1,5 @@
 import React, { useState} from 'react'
+import '../styles/LoginRegister.css'
 
 function Login() {
 
@@ -49,7 +50,7 @@ function Login() {
         />
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit" className="button">Login</button>
     </form>
   </div>
 );
