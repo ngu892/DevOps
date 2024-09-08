@@ -19,3 +19,18 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+  pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UseNode@2
+    inputs:
+      versionSpec: '16.x'
+    displayName: 'Use Node.js 16.x'
+
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
+
