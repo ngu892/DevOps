@@ -7,6 +7,8 @@ import Register from './pages/Register'
 import BuildingOwner from './pages/BuildingOwner'
 import ManageListings from './pages/ManageListings'
 import ManageEnquiries from './pages/ManageEnquiries'
+import Listings from './pages/Listings'
+import Enquiry from './pages/Enquiry'
 import ResidentCommunication from './pages/ResidentCommunication'
 import ResidentFeedback from './pages/ResidentFeedback'
 import PropertyFee from './pages/Propertyfee'
@@ -20,22 +22,25 @@ function App() {
     <div className="App">
       <Router>
         <NavBar/>
-        <Routes>
-          <Route path="/" Component={Home}></Route>
-          <Route path="/login" Component={Login}></Route>
-          <Route path="/register" Component={Register}></Route>
-          <Route path="/Bulding-manager" Component={BuildingManager}></Route>
-          <Route path="/building-owner" Component={BuildingOwner}></Route>
-          <Route path="/manage-listings" Component={ManageListings}></Route>
-          <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
+        <main>
+          <Routes>
+            <Route path="/" Component={Home}></Route>
+            <Route path="/login" Component={Login}></Route>
+            <Route path="/register" Component={Register}></Route>
+            <Route path="/Bulding-manager" Component={BuildingManager}></Route>
+            <Route path="/building-owner" Component={BuildingOwner}></Route>
+            <Route path="/manage-listings" Component={ManageListings}></Route>
+            <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
+            <Route path="/listings" Component={Listings}></Route>
+            <Route path="/enquiry" Component={Enquiry}></Route>
 
-          <Route path="/communication" element={<ResidentCommunication />} />
-          <Route path="/feedback" element={<ResidentFeedback />} />
+            <Route path="/communication" element={<ResidentCommunication />} />
+            <Route path="/feedback" element={<ResidentFeedback />} />
 
-          <Route path="/propertyfee" element={<PropertyFee />} />
-          <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
-  
-        </Routes>
+            <Route path="/propertyfee" element={<PropertyFee />} />
+            <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
+          </Routes>
+        </main>
         <Footer/>
       </Router>
     </div>
