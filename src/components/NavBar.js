@@ -14,7 +14,7 @@ function NavBar() {
         <Link to="/"> Home </Link>
         <Link to="/listings"> Listings </Link>
         <Link to="/contact"> Contact </Link>
-    
+        <Link to="/BuildingManager"> Building Manager</Link>
     <div className="starta">
           <button> Starta </button>
           <div className="dropdown">

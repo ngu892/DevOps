@@ -11,7 +11,9 @@ import ResidentCommunication from './pages/ResidentCommunication'
 import ResidentFeedback from './pages/ResidentFeedback'
 import PropertyFee from './pages/Propertyfee'
 import MaintenanceRepair from './pages/MaintenanceRepair'
+import BuildingManager from './pages/BuildingManager'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
           <Route path="/" Component={Home}></Route>
           <Route path="/login" Component={Login}></Route>
           <Route path="/register" Component={Register}></Route>
-          
+          <Route path="/Bulding-manager" Component={BuildingManager}></Route>
           <Route path="/building-owner" Component={BuildingOwner}></Route>
           <Route path="/manage-listings" Component={ManageListings}></Route>
           <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
