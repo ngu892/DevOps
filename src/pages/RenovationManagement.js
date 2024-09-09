@@ -1,16 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import '../styles/RenovationManagement.css'
 
 function RenovationManagement() {
   return (
-    <div>
-      <h2>Renovation Management</h2>
-      <p>Book renovation time slots here.</p>
-      <ul>
-        <li>View available time slots</li>
-        <li>Select and book a time</li>
-      </ul>
-      <Link to="/">Back to Home</Link>
+    <div className="renovation-management">
+      <div className="headerContainer">
+        <h1>Renovation Management</h1>
+        <p>Book your renovation slots easily.</p>
+      </div>
+      <div className="contentContainer">
+        <h2>Available Time Slots</h2>
+        <ul className="timeSlots">
+          <li>Monday: 10 AM - 12 PM</li>
+          <li>Tuesday: 2 PM - 4 PM</li>
+          <li>Wednesday: 1 PM - 3 PM</li>
+        </ul>
+        <p>You can select and book a time that suits you.</p>
+      </div>
     </div>
   );
 }
