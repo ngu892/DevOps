@@ -39,6 +39,9 @@ function App() {
 
             <Route path="/propertyfee" element={<PropertyFee />} />
             <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
+            
+            <Route path="/Parking" element={<ParkingManagement />} />
+            <Route path="/Renovation" element={<RenovationManagement />} />
           </Routes>
         </main>
         <Footer/>
