@@ -38,12 +38,13 @@ function App() {
 
             <Route path="/communication" element={<ResidentCommunication />} />
             <Route path="/feedback" element={<ResidentFeedback />} />
-
+            
             <Route path="/propertyfee" element={<PropertyFee />} />
             <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
             
             <Route path="/Parking" element={<ParkingManagement />} />
             <Route path="/Renovation" element={<RenovationManagement />} />
+            
           </Routes>
         </main>
         <Footer/>
