@@ -14,6 +14,8 @@ import ResidentFeedback from './pages/ResidentFeedback'
 import PropertyFee from './pages/Propertyfee'
 import MaintenanceRepair from './pages/MaintenanceRepair'
 import BuildingManager from './pages/BuildingManager'
+import ParkingManagement from './pages/ParkingManagement';
+import RenovationManagement from './pages/RenovationManagement';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
