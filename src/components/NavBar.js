@@ -39,6 +39,8 @@ function NavBar() {
             <Link to="/register"> Register </Link>
           </div>
         </div>
+
+
       </div>
     </div>
   )
