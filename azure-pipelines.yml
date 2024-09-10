@@ -1,28 +1,35 @@
 trigger:
-  branches:
-    include:
-      - master
-      - build-pipeline
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '16.x'
-    displayName: 'Use Node.js 16.x'
+- task: UseNode@1
+  inputs:
+    version: '16.x'
+  displayName: 'Install Node.js'
 
-  - script: |
-      npm install
-    displayName: 'Install dependencies'
+- script: |
+    npm install
+  displayName: 'npm install'
 
-  - script: |
-      npm run build
-    displayName: 'Build the project'
+- script: |
+    npm run build
+  displayName: 'npm build'
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'build' 
-      ArtifactName: 'drop'
-    displayName: 'Publish build artifacts'
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: |
+       src/*
+       public/*
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy project files'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    artifactName: e2e-server
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    publishLocation: 'pipeline'
+  displayName: 'Publish npm artifact'
