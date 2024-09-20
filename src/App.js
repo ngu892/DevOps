@@ -29,7 +29,7 @@ function App() {
             <Route path="/" Component={Home}></Route>
             <Route path="/login" Component={Login}></Route>
             <Route path="/register" Component={Register}></Route>
-            <Route path="/Bulding-manager" Component={BuildingManager}></Route>
+            <Route path="/BuldingManager" Component={BuildingManager}></Route>
             <Route path="/building-owner" Component={BuildingOwner}></Route>
             <Route path="/manage-listings" Component={ManageListings}></Route>
             <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>

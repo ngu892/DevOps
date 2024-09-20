@@ -18,7 +18,6 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 로그인 폼 제출 시 처리할 로직
     console.log('Login data:', formData);
   };
   
