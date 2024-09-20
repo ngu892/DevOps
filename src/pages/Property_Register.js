@@ -25,7 +25,7 @@ function Register() {
 
   return (
     <div className="login-container">
-      <h2>Register Page</h2>
+      <h2>Property Register Page</h2>
       <form onSubmit={handleSubmit}>
 
         <div className="form-group">
