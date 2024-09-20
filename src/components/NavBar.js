@@ -38,6 +38,9 @@ function NavBar() {
           <div className="dropdown">
             <Link to="/login"> Login </Link>
             <Link to="/register"> Register </Link>
+            <Link to="/PropertyLogin"> Property Login </Link>
+
+            <Link to="/PropertyRegister">Property Register</Link>
           </div>
         </div>
 

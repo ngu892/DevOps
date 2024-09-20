@@ -1,3 +1,12 @@
+This is he JeongWooPark's branch for ASD Assignment project, it is connected with AzureDevops Pipelines(Parker DevOps)
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

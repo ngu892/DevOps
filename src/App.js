@@ -16,6 +16,8 @@ import MaintenanceRepair from './pages/MaintenanceRepair'
 import BuildingManager from './pages/BuildingManager'
 import ParkingManagement from './pages/ParkingManagement';
 import RenovationManagement from './pages/RenovationManagement';
+import PropertyRegister from './pages/Property_Register';
+import PropertyLogin from './pages/Property_Login';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 
@@ -29,6 +31,8 @@ function App() {
             <Route path="/" Component={Home}></Route>
             <Route path="/login" Component={Login}></Route>
             <Route path="/register" Component={Register}></Route>
+            <Route path="/PropertyLogin" Component={PropertyLogin}></Route>
+            <Route path="/PropertyRegister" Component={PropertyRegister}></Route>
             <Route path="/BuldingManager" Component={BuildingManager}></Route>
             <Route path="/building-owner" Component={BuildingOwner}></Route>
             <Route path="/manage-listings" Component={ManageListings}></Route>
