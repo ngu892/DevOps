@@ -1,0 +1,90 @@
+.listingsTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+
+.tabContainer {
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.tabs {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.activeTab {
+    background: white;
+    border-bottom: 1px solid transparent;
+    font-weight: bold;
+}
+
+.activeTab::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 5px;
+    background: rgb(68, 144, 210);
+}
+
+.contentTabs {
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+.activeContent {
+    display: block;
+}
+
+.noProperties {
+    text-align: center;
+    font-size: 20px;
+    color: rgb(156, 144, 144);
+    padding: 20px;
+}
+
+.addPropertyBtn {
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: rgb(68, 144, 210);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.addPropertyForm {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addPropertyForm input, label {
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 200px;
+}
