@@ -41,7 +41,7 @@ function Register() {
       ) :
       (
         <div className='login-container'>
-          <h2>Property Manager Register</h2>
+          <h2>Owner or Tenant Register Page</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="id">ID:</label>

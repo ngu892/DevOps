@@ -36,11 +36,11 @@ function NavBar() {
         <div className="account">
           <button> Account </button>
           <div className="dropdown">
-            <Link to="/login"> Login </Link>
-            <Link to="/register"> Register </Link>
-            <Link to="/PropertyLogin"> Property Login </Link>
+            <Link to="/login"> Owner or Tenant Login </Link>
+            <Link to="/register"> Owner or Tenant Register </Link>
+            <Link to="/PropertyLogin"> Property Manager Login </Link>
 
-            <Link to="/PropertyRegister">Property Register</Link>
+            <Link to="/PropertyRegister">Property Manager Register</Link>
           </div>
         </div>
 

@@ -23,7 +23,7 @@ function Login() {
   
   return (
     <div className="login-container">
-    <h2>Property Login</h2>
+    <h2>Property Manager Login</h2>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="userId">ID:</label>
