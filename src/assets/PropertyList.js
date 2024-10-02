@@ -10,6 +10,7 @@ export const PropertyList = [
         bathrooms: 2,
         garage: 1,
         price: 970500,
+        isActive: true
     },
     {
         image: building2,
@@ -18,6 +19,7 @@ export const PropertyList = [
         bathrooms: 1,
         garage: "N/A",
         price: 710900,
+        isActive: true
     },
     {
         image: building3,
