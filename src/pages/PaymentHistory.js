@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // 导入 useNavigate 钩子
-import { PaymentContext } from '../context/PaymentContext'; // 导入支付上下文
+import { useNavigate } from 'react-router-dom'; 
+import { PaymentContext } from '../context/PaymentContext'; 
 
 const PaymentHistory = () => {
-  const { paymentHistory } = useContext(PaymentContext); // 使用上下文中的 paymentHistory
-  const navigate = useNavigate(); // 使用 useNavigate 钩子
+  const { paymentHistory } = useContext(PaymentContext); 
+  const navigate = useNavigate(); 
 
-  // 返回到 PropertyFee 页面
+  
   const handleBack = () => {
     navigate('/propertyfee');
   };
@@ -35,7 +35,7 @@ const PaymentHistory = () => {
         </tbody>
       </table>
 
-      {/* 返回按钮 */}
+     
       <button onClick={handleBack} style={{ marginTop: '20px' }}>
         Return to Property Fee Management
       </button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/PropertyFee.css'; // 引入样式文件
+import '../styles/PropertyFee.css'; 
 
 const PropertyFee = () => {
   const [fees, setFees] = useState([

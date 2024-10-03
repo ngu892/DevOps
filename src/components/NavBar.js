@@ -20,6 +20,7 @@ function NavBar() {
           <div className="dropdown">
             <Link to="/Propertyfee"> Propertyfee </Link>
             <Link to="/MaintenanceRepair"> MaintenanceRepair </Link>
+            <Link to="/MaintenanceRequest"> MaintenanceRequest </Link>
           </div>
         </div>
     

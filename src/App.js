@@ -14,15 +14,16 @@ import MaintenanceRepair from './pages/MaintenanceRepair';
 import BuildingManager from './pages/BuildingManager';
 import PaymentMethods from './pages/PaymentMethods';
 import PaymentHistory from './pages/PaymentHistory';
+import MaintenanceRequest from './pages/MaintenanceRequest';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
 import { PaymentProvider } from './context/PaymentContext';
+import { MaintenanceProvider } from './context/MaintenanceContext';
 
 function App() {
   return (
     <div className="App">
-      <PaymentProvider>
+      <MaintenanceProvider>
+       <PaymentProvider>
         <Router>
           <NavBar />
           <Routes>
@@ -39,13 +40,15 @@ function App() {
 
             <Route path="/propertyfee" element={<PropertyFee />} />
             <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
+            <Route path="/MaintenanceRequest" element={<MaintenanceRequest />} />
 
             <Route path="/paymentmethods" element={<PaymentMethods />} />
             <Route path="/paymenthistory" element={<PaymentHistory />} />
           </Routes>
           <Footer />
         </Router>
-      </PaymentProvider>
+       </PaymentProvider>
+      </MaintenanceProvider>
     </div>
   );
 }

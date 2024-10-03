@@ -1,13 +1,27 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/PaymentMethods.css'; // 引入样式文件
+import { useContext } from 'react';
+import { PaymentContext } from '../context/PaymentContext';
+import '../styles/PaymentMethods.css'; 
 
 const PaymentMethods = () => {
   const navigate = useNavigate();
+  const { addPaymentRecord } = useContext(PaymentContext); 
 
   const handlePayment = (method) => {
-    // 处理支付逻辑
-    navigate('/paymenthistory'); // 支付完成后跳转到 payment history
+    
+    const newPayment = {
+      type: 'Management Fee', 
+      amount: 100, 
+      paymentDate: new Date().toLocaleDateString(),
+      method,
+    };
+
+   
+    addPaymentRecord(newPayment);
+
+  
+    navigate('/paymenthistory');
   };
 
   return (
