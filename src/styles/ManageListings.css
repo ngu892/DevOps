@@ -74,6 +74,7 @@
     cursor: pointer;
     display: block;
     text-align: center;
+    font-size: 16px;
 }
 
 .addPropertyForm {
@@ -87,4 +88,66 @@
     margin-bottom: 10px;
     width: 100%;
     max-width: 200px;
+}
+/* 
+.propertyDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.editBtn {
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(68, 144, 210);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 150px;
+    margin: 5px;
+}
+
+.editBtn:hover {
+    background-color: rgb(45, 104, 156);
+}
+
+.deleteBtn {
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(210, 68, 68);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 150px;
+    margin: 5px;
+}
+
+.deleteBtn:hover {
+    background-color: rgb(180, 57, 57);
+}
+
+.completeBtn {
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(210, 182, 68);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    max-width: 150px;
+    margin: 5px;
+}
+
+.completeBtn:hover {
+    background-color: rgb(184, 158, 52);
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { PropertyList } from '../assets/PropertyList'
 import PropertyItem from '../components/PropertyItem'
 import AddPropertyForm from '../components/AddPropertyForm'
+import EditProperty from '../components/EditProperty'
 import '../styles/ManageListings.css'
 
 function ManageListings() {
@@ -9,6 +10,8 @@ function ManageListings() {
   const [toggleState, setToggleState] = useState(1)
   const [properties, setProperties] = useState(PropertyList)
   const [showForm, setShowForm] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [editingProperty, setEditingProperty] = useState(null)
 
   const toggleTab = (index) => {
     setToggleState(index)
@@ -27,12 +30,43 @@ function ManageListings() {
     setShowForm(false) //close form after submit
   }
 
+  const handleEditProperty = (updatedProperty) => {
+    const updatedProperties = properties.map((property) =>
+      property.id === updatedProperty.id ? updatedProperty : property
+    )
+    setProperties(updatedProperties)
+  }
+
+  const openEdit = (property) => {
+    if (property) {
+      setEditingProperty(property)
+      setIsEditOpen(true)
+    }
+  }
+
+  const closeEdit = () => {
+    setIsEditOpen(false)
+    setEditingProperty(null)
+  }
+
+  const handleDeleteProperty = (propertyId) => {
+    const deletedProperties = properties.filter(property => property.id !== propertyId)
+    setProperties(deletedProperties)
+  }
+
+  const handleMarkAsComplete = (propertyId) => {
+    const completedProperties = properties.map(property => 
+      property.id === propertyId ? { ...property, isActive: false } : property
+    )
+    setProperties(completedProperties)
+  }
+
   return (
     <div className="manageListings">
       <h1 className="listingsTitle">My Properties</h1>
 
       <button className="addPropertyBtn" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Cancel" : "List Property"}
+        {showForm ? "Cancel" : "+ List Property"}
       </button>
       {showForm && <AddPropertyForm onAddProperty={handleAddProperty}/>}
 
@@ -52,12 +86,18 @@ function ManageListings() {
             ) : (
               activeProperties.map((propertyItem, key) => (
                 <PropertyItem 
+                  key={key}
                   image={propertyItem.image} 
                   address={propertyItem.address} 
                   bedrooms={propertyItem.bedrooms} 
                   bathrooms={propertyItem.bathrooms} 
                   garage={propertyItem.garage} 
-                  price={propertyItem.price}/>
+                  price={propertyItem.price}
+                  showEditDeleteBtns={true}
+                  showCompleteBtn={true}
+                  editClick={() => openEdit(propertyItem)}
+                  deleteClick={() => handleDeleteProperty(propertyItem.id)}
+                  completeClick={() => handleMarkAsComplete(propertyItem.id)}/>
               ))
             )}
           </div>
@@ -67,19 +107,27 @@ function ManageListings() {
             ) : (
               pastProperties.map((propertyItem, key) => (
                 <PropertyItem 
+                  key={key}
                   image={propertyItem.image} 
                   address={propertyItem.address} 
                   bedrooms={propertyItem.bedrooms} 
                   bathrooms={propertyItem.bathrooms} 
                   garage={propertyItem.garage} 
-                  price={propertyItem.price}/>
+                  price={propertyItem.price}
+                  showRemoveBtn={true}
+                  deleteClick={() => handleDeleteProperty(propertyItem.id)}/>
               ))
             )}
           </div>
         </div>
-
       </div>
 
+      <EditProperty
+        isOpen={isEditOpen}
+        close={closeEdit}
+        property={editingProperty}
+        save={handleEditProperty}
+      />
     </div>
   )
 }
