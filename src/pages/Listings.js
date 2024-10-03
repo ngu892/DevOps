@@ -9,13 +9,16 @@ function Listings() {
         <h1 className="listingsTitle">Available Properties</h1>
         <div className="propertyList">
             {PropertyList.map((propertyItem, key) => {
-                return <PropertyItem 
-                image={propertyItem.image} 
-                address={propertyItem.address} 
-                bedrooms={propertyItem.bedrooms} 
-                bathrooms={propertyItem.bathrooms} 
-                garage={propertyItem.garage} 
-                price={propertyItem.price} />
+                return (
+                  <PropertyItem 
+                  image={propertyItem.image} 
+                  address={propertyItem.address} 
+                  bedrooms={propertyItem.bedrooms} 
+                  bathrooms={propertyItem.bathrooms} 
+                  garage={propertyItem.garage} 
+                  price={propertyItem.price}
+                  showEnquireBtn={true}/>
+                )
             })}
         </div>
     </div>

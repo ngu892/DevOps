@@ -4,6 +4,7 @@ import building3 from '../assets/building3.jpg'
 
 export const PropertyList = [
     {
+        id: 1,
         image: building1,
         address: "54 Tilda St, Woollo NC 8123",
         bedrooms: 3,
@@ -13,6 +14,7 @@ export const PropertyList = [
         isActive: true
     },
     {
+        id: 2,
         image: building2,
         address: "128 Frank Rd, Bitta YA 1029",
         bedrooms: 2,
@@ -22,6 +24,7 @@ export const PropertyList = [
         isActive: true
     },
     {
+        id: 3,
         image: building3,
         address: "90 Sesame St, Paradise 5104",
         bedrooms: 4,
