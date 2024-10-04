@@ -5,10 +5,28 @@ import '../styles/ResidentFeedback.css';
 function ResidentFeedback() {
   const [feedbackList, setFeedbackList] = useState([]);
   const [newFeedback, setNewFeedback] = useState('');
+  const [feedbackType, setFeedbackType] = useState('Complaint');
 
   const handleFeedbackSubmit = () => {
-    setFeedbackList([...feedbackList, { text: newFeedback, timestamp: new Date() }]);
+    if (newFeedback.trim() === '') {
+      alert("Feedback cannot be empty");
+      return;
+    }
+    
+    
+    setFeedbackList([
+      ...feedbackList, 
+      { 
+        text: newFeedback, 
+        type: feedbackType, 
+        timestamp: new Date(), 
+        status: 'Pending' 
+      }
+    ]);
+
+    
     setNewFeedback('');
+    setFeedbackType('Complaint');
   };
 
   return (
@@ -25,13 +43,27 @@ function ResidentFeedback() {
           ) : (
             feedbackList.map((feedback, index) => (
               <div key={index} className="feedback">
+                <p><strong>Type:</strong> {feedback.type}</p> {/* Display Feedback Type */}
                 <p>{feedback.text}</p>
                 <small>{feedback.timestamp.toString()}</small>
+                <p><strong>Status:</strong> {feedback.status}</p> {/* Display Feedback Type */}
               </div>
             ))
           )}
         </div>
+
         <div className="newFeedback">
+          {/* Feedback type selection */}
+          <select 
+            value={feedbackType} 
+            onChange={(e) => setFeedbackType(e.target.value)}
+          >
+            <option value="Complaint">Complaint</option>
+            <option value="Suggestion">Suggestion</option>
+            <option value="Other">Other</option>
+          </select>
+
+          {/* Feedback content input box */}
           <textarea
             value={newFeedback}
             onChange={(e) => setNewFeedback(e.target.value)}
