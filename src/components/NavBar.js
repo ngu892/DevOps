@@ -14,13 +14,17 @@ function NavBar() {
         <Link to="/"> Home </Link>
         <Link to="/listings"> Listings </Link>
         <Link to="/contact"> Contact </Link>
-        <Link to="/BuildingManager"> Building Manager</Link>
+        <Link to="/BuldingManager">  BuildingManager</Link>
+
     <div className="starta">
           <button> Starta </button>
           <div className="dropdown">
             <Link to="/Propertyfee"> Propertyfee </Link>
             <Link to="/MaintenanceRepair"> MaintenanceRepair </Link>
             <Link to="/MaintenanceRequest"> MaintenanceRequest </Link>
+            <Link to="/Parking"> Parking </Link>
+            <Link to="/Renovation"> Renovation </Link>
+
           </div>
         </div>
     
@@ -34,10 +38,15 @@ function NavBar() {
         <div className="account">
           <button> Account </button>
           <div className="dropdown">
-            <Link to="/login"> Login </Link>
-            <Link to="/register"> Register </Link>
+            <Link to="/login"> Owner or Tenant Login </Link>
+            <Link to="/register"> Owner or Tenant Register </Link>
+            <Link to="/PropertyLogin"> Property Manager Login </Link>
+
+            <Link to="/PropertyRegister">Property Manager Register</Link>
           </div>
         </div>
+
+
       </div>
     </div>
   )

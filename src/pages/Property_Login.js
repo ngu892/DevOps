@@ -1,4 +1,5 @@
 import React, { useState} from 'react'
+import '../styles/LoginRegister.css'
 
 function Login() {
 
@@ -17,13 +18,12 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 로그인 폼 제출 시 처리할 로직
     console.log('Login data:', formData);
   };
   
   return (
     <div className="login-container">
-    <h2>Login</h2>
+    <h2>Property Manager Login</h2>
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="userId">ID:</label>
@@ -49,7 +49,7 @@ function Login() {
         />
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit" className="button">Login</button>
     </form>
   </div>
 );
