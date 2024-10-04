@@ -144,3 +144,28 @@
     color: white;
     font-size: 16px;
 }
+
+
+.starta {
+    position: relative;
+    margin-left: 16px;
+}
+
+.starta:hover .dropdown {
+    display: block;
+}
+
+.starta .dropdown {
+    position: absolute;
+    top: 100%;
+    left: -20%;
+    display: none;
+    background-color: rgb(74, 72, 72);
+}
+
+.starta .dropdown a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}

@@ -1,46 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useMaintenance } from '../context/MaintenanceContext'; 
 
 const MaintenanceRepair = () => {
-  const [requests, setRequests] = useState([
-    { id: 1, issue: 'Leaking pipe', date: '2024-09-10', status: 'Pending' },
-    { id: 2, issue: 'Broken door lock', date: '2024-09-11', status: 'In Progress' },
-    { id: 3, issue: 'Malfunctioning air conditioner', date: '2024-09-12', status: 'Completed' }
-  ]);
 
-  const [newRequest, setNewRequest] = useState('');
-  const [pendingCount, setPendingCount] = useState(0);
-  const [inProgressCount, setInProgressCount] = useState(0);
-  const [completedCount, setCompletedCount] = useState(0);
+  const { requests, updateStatus } = useMaintenance();
 
-  useEffect(() => {
-    const pending = requests.filter(request => request.status === 'Pending').length;
-    const inProgress = requests.filter(request => request.status === 'In Progress').length;
-    const completed = requests.filter(request => request.status === 'Completed').length;
-
-    setPendingCount(pending);
-    setInProgressCount(inProgress);
-    setCompletedCount(completed);
-  }, [requests]);
-
-  const updateStatus = (id, newStatus) => {
-    const updatedRequests = requests.map(request =>
-      request.id === id ? { ...request, status: newStatus } : request
-    );
-    setRequests(updatedRequests);
-  };
-
-  const handleSubmitRequest = () => {
-    if (newRequest) {
-      const newReq = {
-        id: requests.length + 1,
-        issue: newRequest,
-        date: new Date().toLocaleDateString(),
-        status: 'Pending'
-      };
-      setRequests([...requests, newReq]);
-      setNewRequest('');
-    }
-  };
+ 
+  const pendingCount = requests.filter(request => request.status === 'Pending').length;
+  const inProgressCount = requests.filter(request => request.status === 'In Progress').length;
+  const completedCount = requests.filter(request => request.status === 'Completed').length;
 
   return (
     <div>
@@ -81,17 +49,6 @@ const MaintenanceRepair = () => {
         <h3>Pending Requests: {pendingCount}</h3>
         <h3>In Progress Requests: {inProgressCount}</h3>
         <h3>Completed Requests: {completedCount}</h3>
-      </div>
-
-      <div>
-        <h3>Submit a New Maintenance Request</h3>
-        <input
-          type="text"
-          placeholder="Enter issue description"
-          value={newRequest}
-          onChange={(e) => setNewRequest(e.target.value)}
-        />
-        <button onClick={handleSubmitRequest}>Submit</button>
       </div>
     </div>
   );

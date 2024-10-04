@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/PropertyFee.css'; 
 
 const PropertyFee = () => {
   const [fees, setFees] = useState([
@@ -9,6 +11,7 @@ const PropertyFee = () => {
 
   const [paidTotal, setPaidTotal] = useState(0);
   const [remainingTotal, setRemainingTotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const paid = fees.reduce((acc, fee) => (fee.paid ? acc + fee.amount : acc), 0);
@@ -18,10 +21,8 @@ const PropertyFee = () => {
   }, [fees]);
 
   const handlePayment = (id) => {
-    const updatedFees = fees.map((fee) =>
-      fee.id === id ? { ...fee, paid: true } : fee
-    );
-    setFees(updatedFees);
+    const feeToPay = fees.find(fee => fee.id === id);
+    navigate('/paymentmethods', { state: { fee: feeToPay } });
   };
 
   const addFee = () => {
@@ -35,8 +36,12 @@ const PropertyFee = () => {
     setFees([...fees, newFee]);
   };
 
+  const goToPaymentHistory = () => {
+    navigate('/paymenthistory');
+  };
+
   return (
-    <div>
+    <div className="container">
       <h2>Property Fee Management</h2>
       <p>Manage and collect various property-related fees, like management fees, maintenance fees, and other charges.</p>
       
@@ -57,7 +62,7 @@ const PropertyFee = () => {
               <td>${fee.amount}</td>
               <td>{fee.dueDate}</td>
               <td>{fee.paid ? 'Paid' : 'Unpaid'}</td>
-              <td>
+              <td className="actions">
                 {fee.paid ? (
                   <button disabled>Paid</button>
                 ) : (
@@ -69,14 +74,15 @@ const PropertyFee = () => {
         </tbody>
       </table>
 
-      <div>
+      <div className="total-section">
         <h3>Total Fees Paid: ${paidTotal}</h3>
         <h3>Remaining Fees: ${remainingTotal}</h3>
       </div>
 
       <button onClick={addFee}>Generate New Fee</button>
+      <button onClick={goToPaymentHistory}>View Payment History</button>
 
-      <div>
+      <div className="need-help">
         <h4>Need Help?</h4>
         <p>For any issues with payment or fees, please contact the property management office.</p>
       </div>
