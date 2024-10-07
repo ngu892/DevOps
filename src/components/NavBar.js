@@ -21,8 +21,10 @@ function NavBar() {
           <div className="dropdown">
             <Link to="/Propertyfee"> Propertyfee </Link>
             <Link to="/MaintenanceRepair"> MaintenanceRepair </Link>
+            <Link to="/MaintenanceRequest"> MaintenanceRequest </Link>
             <Link to="/Parking"> Parking </Link>
             <Link to="/Renovation"> Renovation </Link>
+
           </div>
         </div>
     
