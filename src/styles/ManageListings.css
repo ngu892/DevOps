@@ -5,18 +5,18 @@
     padding-top: 50px;
 }
 
-.container {
+.manageListingsContainer {
     width: 100%;
     height: auto;
     margin-top: 50px;
 }
 
-.tabContainer {
+.propertyTabContainer {
     display: flex;
     border-bottom: 1px solid black;
 }
 
-.tabs {
+.activeInactiveTabs {
     flex: 1;
     padding: 10px;
     text-align: center;
@@ -42,11 +42,11 @@
     background: rgb(68, 144, 210);
 }
 
-.contentTabs {
+.propertyContentTabs {
     padding: 20px;
 }
 
-.content {
+.propertyContent {
     padding: 20px;
     width: 100%;
     height: auto;
@@ -89,8 +89,8 @@
     width: 100%;
     max-width: 200px;
 }
-/* 
-.propertyDetails {
+
+/* .propertyDetails {
     display: flex;
     flex-direction: column;
     align-items: center;
