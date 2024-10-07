@@ -70,17 +70,17 @@ function ManageListings() {
       </button>
       {showForm && <AddPropertyForm onAddProperty={handleAddProperty}/>}
 
-      <div className="container">
+      <div className="manageListingsContainer">
 
-        <div className="tabContainer">
-          <div className={toggleState === 1 ? "tabs activeTab" : "tabs"} 
+        <div className="propertyTabContainer">
+          <div className={toggleState === 1 ? "activeInactiveTabs activeTab" : "activeInactiveTabs"} 
             onClick={() => toggleTab(1)}>Active Listings</div>
-          <div className={toggleState === 2 ? "tabs activeTab" : "tabs"} 
+          <div className={toggleState === 2 ? "activeInactiveTabs activeTab" : "activeInactiveTabs"} 
             onClick={() => toggleTab(2)}>Past Listings</div>
         </div>
 
-        <div className="contentTabs">
-          <div className={toggleState === 1 ? "content activeContent" : "content"}>
+        <div className="propertyContentTabs">
+          <div className={toggleState === 1 ? "propertyContent activeContent" : "propertyContent"}>
             {activeProperties.length === 0 ? (
               <div className="noProperties">No Properties Found.</div>
             ) : (
@@ -101,7 +101,7 @@ function ManageListings() {
               ))
             )}
           </div>
-          <div className={toggleState === 2 ? "content activeContent" : "content"}>
+          <div className={toggleState === 2 ? "propertyContent activeContent" : "propertyContent"}>
             {pastProperties.length === 0 ? (
               <div className="noProperties">No Properties Found.</div>
             ) : (
