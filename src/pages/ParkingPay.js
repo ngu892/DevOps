@@ -10,7 +10,7 @@ function ParkingPay() {
 
   const handlePaymentConfirm = () => {
     alert(`Payment of $${cost} for license plate ${licensePlate} successful!`);
-    navigate('/'); // back to main page after pay
+    navigate('/'); // 支付成功后重定向回主页面
   };
 
   return (
@@ -29,4 +29,4 @@ function ParkingPay() {
   );
 }
 
-export default ParkingPay
+export default ParkingPay;
