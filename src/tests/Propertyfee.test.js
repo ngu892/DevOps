@@ -40,10 +40,10 @@ describe('PropertyFee component', () => {
       </Router>
     );
 
-    // 使用 getAllByText 获取多个 "Pay Now" 按钮并点击第一个
+    
     const payNowButtons = screen.getAllByText(/Pay Now/i);
     expect(payNowButtons.length).toBeGreaterThan(0);
-    fireEvent.click(payNowButtons[0]); // 点击第一个 "Pay Now" 按钮
+    fireEvent.click(payNowButtons[0]); 
   });
 
   it('should generate a new fee when "Generate New Fee" is clicked', () => {
