@@ -42,7 +42,10 @@
   align-items: center;
 }
 
-/* 预定按钮样式 */
+.timeSlots li.booked {
+  background-color: #f8d7da;
+}
+
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -74,7 +77,6 @@ button:hover {
   color: #333;
 }
 
-/* 取消预定按钮样式 */
 .cancel-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -89,4 +91,3 @@ button:hover {
 .cancel-button:hover {
   background-color: #c82333;
 }
-
