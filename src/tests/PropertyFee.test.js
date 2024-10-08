@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import PropertyFee from './PropertyFee';
+import PropertyFee from '../pages/PropertyFee';  // 更新了导入路径
 
 describe('PropertyFee component', () => {
   it('should render all initial fees correctly', () => {
@@ -38,9 +38,6 @@ describe('PropertyFee component', () => {
 
     // 模拟点击未支付的费用的“Pay Now”按钮
     fireEvent.click(getByText(/Pay Now/i));
-
-    // 在这个例子中，由于我们没有设置实际的导航，可以验证导航的行为（在真实环境中，你需要mock navigate）
-    // 你可以添加 expect() 来验证特定的行为
   });
 
   it('should generate a new fee when "Generate New Fee" is clicked', () => {
@@ -69,8 +66,5 @@ describe('PropertyFee component', () => {
 
     // 模拟点击“View Payment History”按钮
     fireEvent.click(getByText(/View Payment History/i));
-
-    // 由于这是一个导航操作，可以mock useNavigate进行验证
-    // expect(mockNavigate).toHaveBeenCalledWith('/paymenthistory');
   });
 });
