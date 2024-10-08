@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import '../styles/ParkingManagement.css';
+import { useNavigate } from 'react-router-dom';
 
 function ParkingManagement() {
-  
   const [licensePlate, setLicensePlate] = useState('');
   const [isPaid, setIsPaid] = useState(false);
-  const [availableSpaces, setAvailableSpaces] = useState(50);  // number of parking place is 50 at first
+  const [availableSpaces, setAvailableSpaces] = useState(50);  
   const [notification, setNotification] = useState('');
+  const [parkedCars, setParkedCars] = useState({});
+  
+  const navigate = useNavigate();
 
-  // enter 
   const handleLicensePlateChange = (e) => {
     setLicensePlate(e.target.value);
   };
-
-  // pay
-  const handlePayment = () => {
+//status of parking 
+  const handleParking = () => {
     if (licensePlate === '') {
       setNotification('Please enter your license plate number.');
       return;
@@ -25,9 +26,43 @@ function ParkingManagement() {
       return;
     }
 
-    setIsPaid(true);
+    if (parkedCars[licensePlate]) {
+      setNotification('Car is already parked.');
+      return;
+    }
+
+    const startTime = new Date();
+    setParkedCars({ ...parkedCars, [licensePlate]: { startTime } });
     setAvailableSpaces(availableSpaces - 1);
-    setNotification(`Payment successful! Your license plate: ${licensePlate}`);
+    setNotification(`Car parked successfully!`);
+  };
+//if can't find the license plate
+  const handleExit = () => {
+    if (!parkedCars[licensePlate]) {
+      setNotification('This car is not parked here.');
+      return;
+    }
+
+    const exitTime = new Date();
+    const startTime = parkedCars[licensePlate].startTime;
+    const parkedDurationMinutes = Math.floor((exitTime - startTime) / 60000);
+
+    let cost = 0;
+    if (parkedDurationMinutes > 30) {
+      const hours = Math.ceil((parkedDurationMinutes - 30) / 60);
+      cost = Math.min(hours * 5, 30);
+    }
+
+    setAvailableSpaces(availableSpaces + 1);
+    const updatedParkedCars = { ...parkedCars };
+    delete updatedParkedCars[licensePlate];
+    setParkedCars(updatedParkedCars);
+
+    setNotification(`Please pay $${cost}.`);
+
+    if (cost > 0) {
+      navigate('/pay', { state: { cost, licensePlate } });
+    }
   };
 
   return (
@@ -45,9 +80,8 @@ function ParkingManagement() {
           placeholder="Enter License Plate"
           onChange={handleLicensePlateChange}
         />
-        <button onClick={handlePayment}>Pay for Parking</button>
-
-        {isPaid && <p>Payment successful for {licensePlate}!</p>}
+        <button onClick={handleParking}>Park</button>
+        <button onClick={handleExit}>Exit</button>
 
         <h2>Available Spaces: {availableSpaces}</h2>
       </div>
@@ -58,6 +92,10 @@ function ParkingManagement() {
       </div>
     </div>
   );
+}
+
+export default ParkingManagement;
+
 }
 
 export default ParkingManagement;
