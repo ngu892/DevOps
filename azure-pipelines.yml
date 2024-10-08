@@ -28,11 +28,17 @@ steps:
       ArtifactName: 'drop'
     displayName: 'Publish build artifacts'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Run unit tests'
+  - script: |
+      npm run test
+    displayName: 'Run tests'
+
+  - script: |
+      npm run build
+    displayName: 'Build the project'
+
+  - task: PublishBuildArtifacts@1
     inputs:
-    command: 'test'
-    arguments: '--no-build --configuration $(buildConfiguration)'
-    publishTestResults: true
-    projects: '**/*.Tests.csproj'
+      PathtoPublish: 'build'  
+      ArtifactName: 'drop'
+    displayName: 'Publish build artifacts'
 
