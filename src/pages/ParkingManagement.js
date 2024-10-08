@@ -69,7 +69,7 @@ function ParkingManagement() {
     <div className="parking-management">
       <div className="headerContainer">
         <h1>Parking Management</h1>
-        <p>Manage your parking space easily and efficiently.</p>
+        <p>Manage your parking space easily</p>
       </div>
 
       <div className="contentContainer">
