@@ -22,9 +22,8 @@ steps:
     displayName: 'Build the project'
 
   - script: |
-      npm test
+      npm test --testPathPattern=src/tests --watchAll=false --ci
     displayName: 'Run unit tests'
-    continueOnError: false
 
   - task: PublishBuildArtifacts@1
     inputs:

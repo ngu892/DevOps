@@ -5,7 +5,7 @@ import { act } from 'react'
 import React from 'react'
 
 test('clicking Delete button calls deleteClick function', () => {
-  const deleteClick = jest.fn() //mock function
+  const deleteClick = jest.fn()
 
   act(() => {
     render(
