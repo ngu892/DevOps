@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function ParkingManagement() {
   const [licensePlate, setLicensePlate] = useState('');
   const [isPaid, setIsPaid] = useState(false);
-  const [availableSpaces, setAvailableSpaces] = useState(50);  
+  const [availableSpaces, setAvailableSpaces] = useState(50);
   const [notification, setNotification] = useState('');
   const [parkedCars, setParkedCars] = useState({});
   
@@ -14,7 +14,7 @@ function ParkingManagement() {
   const handleLicensePlateChange = (e) => {
     setLicensePlate(e.target.value);
   };
-//status of parking 
+
   const handleParking = () => {
     if (licensePlate === '') {
       setNotification('Please enter your license plate number.');
@@ -34,9 +34,9 @@ function ParkingManagement() {
     const startTime = new Date();
     setParkedCars({ ...parkedCars, [licensePlate]: { startTime } });
     setAvailableSpaces(availableSpaces - 1);
-    setNotification(`Car parked successfully!`);
+    setNotification('Car parked successfully!');
   };
-//if can't find the license plate
+
   const handleExit = () => {
     if (!parkedCars[licensePlate]) {
       setNotification('This car is not parked here.');
@@ -92,10 +92,6 @@ function ParkingManagement() {
       </div>
     </div>
   );
-}
-
-export default ParkingManagement;
-
 }
 
 export default ParkingManagement;
