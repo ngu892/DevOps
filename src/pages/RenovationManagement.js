@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../styles/RenovationManagement.css';
 
 function RenovationManagement() {
-  // choose time table (...)
   const [timeSlots, setTimeSlots] = useState([
     { day: 'Monday', time: '10 AM - 12 PM', booked: false },
     { day: 'Tuesday', time: '2 PM - 4 PM', booked: false },
@@ -10,21 +9,24 @@ function RenovationManagement() {
   ]);
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  
   const handleBooking = (index) => {
-    const updatedSlots = [...timeSlots];
-    updatedSlots[index].booked = true;
-    setTimeSlots(updatedSlots);
-    setSelectedSlot(updatedSlots[index]);
+    setTimeSlots(prevSlots =>
+      prevSlots.map((slot, i) => 
+        i === index ? { ...slot, booked: true } : slot
+      )
+    );
+    setSelectedSlot(timeSlots[index]);
   };
 
-  // cancel booking
   const handleCancelBooking = () => {
-    const updatedSlots = timeSlots.map((slot) => 
-      slot === selectedSlot ? { ...slot, booked: false } : slot
-    );
-    setTimeSlots(updatedSlots);
-    setSelectedSlot(null);
+    if (window.confirm('Are you sure you want to cancel this booking?')) {
+      setTimeSlots(prevSlots =>
+        prevSlots.map(slot =>
+          slot === selectedSlot ? { ...slot, booked: false } : slot
+        )
+      );
+      setSelectedSlot(null);
+    }
   };
 
   return (
@@ -38,12 +40,12 @@ function RenovationManagement() {
         <h2>Available Time Slots</h2>
         <ul className="timeSlots">
           {timeSlots.map((slot, index) => (
-            <li key={index}>
+            <li key={index} className={slot.booked ? 'booked' : ''}>
               {slot.day}: {slot.time} 
               {!slot.booked ? (
                 <button onClick={() => handleBooking(index)}>Book</button>
               ) : (
-                <span> (Booked)</span>
+                <span style={{ color: 'red' }}> (Booked)</span>
               )}
             </li>
           ))}
@@ -54,7 +56,7 @@ function RenovationManagement() {
             <p>
               You have booked a slot on {selectedSlot.day} from {selectedSlot.time}.
             </p>
-            <button onClick={handleCancelBooking}>Cancel Booking</button>
+            <button className="cancel-button" onClick={handleCancelBooking}>Cancel Booking</button>
           </div>
         )}
       </div>
