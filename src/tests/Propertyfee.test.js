@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Propertyfee from '../pages/Propertyfee';  // 更新了导入路径
+import PropertyFee from '../pages/Propertyfee';  // 确保这里使用小写 "f"
 
 describe('PropertyFee component', () => {
   it('should render all initial fees correctly', () => {
