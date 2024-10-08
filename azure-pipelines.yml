@@ -18,6 +18,11 @@ steps:
     displayName: 'Install dependencies'
 
   - script: |
+      npm test
+    displayName: 'Run unit tests'
+    continueonError: false
+
+  - script: |
       npm run build
     displayName: 'Build the project'
 
