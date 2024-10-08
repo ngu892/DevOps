@@ -20,7 +20,7 @@ steps:
   - script: |
       npm test
     displayName: 'Run unit tests'
-    continueonError: false
+    continueOnError: false
 
   - script: |
       npm run build
