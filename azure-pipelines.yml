@@ -24,9 +24,9 @@ steps:
       npm run build
     displayName: 'Build the project'
 
-  # 运行 React 单元测试
+  # 运行 React 单元测试 (运行 tests 目录下的所有测试文件)
   - script: |
-      npm test -- --watchAll=false --ci
+      npm test -- --testPathPattern=src/tests --watchAll=false --ci
     displayName: 'Run React unit tests'
 
   # 发布构建产物
