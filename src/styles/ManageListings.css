@@ -90,12 +90,6 @@
     max-width: 200px;
 }
 
-/* .propertyDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
 .buttonContainer {
     display: flex;
     flex-direction: row;
@@ -151,3 +145,31 @@
 .completeBtn:hover {
     background-color: rgb(184, 158, 52);
 }
+
+.successMsg {
+    background-color: #40a644;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+  }
+
+  .deleteMsg {
+    background-color: #b83e36;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+  }

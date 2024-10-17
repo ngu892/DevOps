@@ -12,6 +12,8 @@ function ManageListings() {
   const [showForm, setShowForm] = useState(false)
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [editingProperty, setEditingProperty] = useState(null)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false)
 
   const toggleTab = (index) => {
     setToggleState(index)
@@ -28,6 +30,10 @@ function ManageListings() {
     }
     setProperties([...properties, propertyWithId])
     setShowForm(false) //close form after submit
+    setShowSuccessMessage(true) //shows message
+    setTimeout(() => {
+      setShowSuccessMessage(false)
+    }, 3000) //message disappears after 3 secs
   }
 
   const handleEditProperty = (updatedProperty) => {
@@ -52,6 +58,10 @@ function ManageListings() {
   const handleDeleteProperty = (propertyId) => {
     const deletedProperties = properties.filter(property => property.id !== propertyId)
     setProperties(deletedProperties)
+    setShowDeleteMessage(true) //shows message
+    setTimeout(() => {
+      setShowDeleteMessage(false)
+    }, 3000) //message disappears after 3 secs
   }
 
   const handleMarkAsComplete = (propertyId) => {
@@ -69,6 +79,18 @@ function ManageListings() {
         {showForm ? "Cancel" : "+ List Property"}
       </button>
       {showForm && <AddPropertyForm onAddProperty={handleAddProperty}/>}
+
+      {showSuccessMessage && (
+        <div className="successMsg">
+          Your property has been listed!
+        </div>
+      )}
+
+      {showDeleteMessage && (
+        <div className="deleteMsg">
+          Your property has been deleted.
+        </div>
+      )}
 
       <div className="manageListingsContainer">
 
