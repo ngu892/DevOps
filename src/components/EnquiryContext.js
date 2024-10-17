@@ -6,7 +6,10 @@ export const EnquiryProvider = ({ children }) => {
   const [enquiries, setEnquiries] = useState([])
   
   const addEnquiry = (enquiry) => {
-    setEnquiries((prevEnquiries) => [...prevEnquiries, enquiry])
+    setEnquiries((prevEnquiries) => [
+      ...prevEnquiries, 
+      {...enquiry, isRead: false}
+    ])
   }
 
   return (
