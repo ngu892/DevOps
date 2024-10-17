@@ -14,11 +14,13 @@ const EditProperty = ({ isOpen, close, property, save }) => {
   useEffect(() => {
     if (property) {
       setUpdatedProperties ({
+        image: property.image || "",
         address: property.address || "",
         bedrooms: property.bedrooms || "",
         bathrooms: property.bathrooms || "",
         garage: property.garage || "",
         price: property.price || "",
+        isActive: property.isActive || true
       })
     }
   }, [property])
@@ -36,7 +38,7 @@ const EditProperty = ({ isOpen, close, property, save }) => {
   }
 
   const handleSubmit = () => {
-    save(updatedProperties)
+    save({ ...updatedProperties, id: property.id, isActive: property.isActive, image: property.image })
     close()
   }
 
