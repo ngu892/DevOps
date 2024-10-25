@@ -73,43 +73,55 @@ textarea {
     border-radius: 4px;
 }
   
-  .responses {
+.responses {
     margin-top: 10px;
-  }
+}
   
-  .myResponse {
+.myResponse {
     color: blue;
-  }
+}
   
-  .userResponse {
+.userResponse {
     color: black;
-  }
+}
 
-  .enquiryTbl {
+.enquiryTbl {
     width: 100%;
     margin-top: 10px;
-  }
-  
-  .enquiryTbl th, .enquiryTbl td {
+    border-collapse: collapse;
+}
+
+.enquiryTblHeader {
+    background-color: white;
+    font-weight: bold;
+}
+
+.enquiryTblCell, .enquiryTbl td {
     border: 1px solid white;
     padding: 10px;
     text-align: left;
-  }
-  
-  .enquiryTbl th {
+}
+
+.enquiryTblCell {
     background-color: #f5e879;
-  }
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
   
-  .enquiryTbl tr:hover {
+.enquiryTbl tr:hover {
     background-color: #f5f5f5;
     cursor: pointer;
-  }
+}
 
-  .unread {
+.unread {
     cursor: pointer;
-    background-color: #f5e879;
-  }
+    background-color: #f5e879 !important;
+}
   
-  .unread:hover {
+.unread:hover {
     background-color: #f5e879;
-  }
+}
+
+.read {
+    background-color: white;
+}
