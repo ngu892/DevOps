@@ -4,15 +4,18 @@ import '../styles/ManageEnquiries.css'
 
 function ManageEnquiries() {
 
-  const { enquiries } = useEnquiry()
+  const { enquiries: initialEnquiries } = useEnquiry()
+  const [enquiries, setEnquiries] = useState(initialEnquiries)
   const [selectedEnquiry, setSelectedEnquiry] = useState(null)
   const [response, setResponse ] = useState('')
 
-  const handleSelectEnquiry = (enquiry) => {
-    if (!enquiry.isRead) {
-      enquiry.isRead = true
-    }
-    setSelectedEnquiry(enquiry)
+  const handleSelectEnquiry = (selected) => {
+    setSelectedEnquiry(selected)
+
+    const updatedEnquiries = enquiries.map((enquiry) =>
+      enquiry.id === selected.id ? { ...enquiry, isRead: true } : enquiry
+    )
+    setEnquiries(updatedEnquiries)
   }
 
   const handleResponseSubmit = () => {
@@ -27,12 +30,13 @@ function ManageEnquiries() {
       <h1 className="enquiriesTitle">Enquiries</h1>
 
       <table className="enquiryTbl">
-        <thead>
+        <thead className="enquiryTblHeader">
           <tr>
-            <th>Name</th>
-            <th>Message</th>
+            <th className="enquiryTblCell">Name</th>
+            <th className="enquiryTblCell">Message</th>
           </tr>
         </thead>
+
         <tbody>
           {enquiries.length === 0 ? (
             <tr>
@@ -43,7 +47,7 @@ function ManageEnquiries() {
               <tr 
                 key={enquiry.id} 
                 onClick={() => handleSelectEnquiry(enquiry)}
-                className={enquiry.isRead ? '' : 'unread'}
+                className={enquiry.isRead ? 'read' : 'unread'}
               >
                 <td>{enquiry.firstName} {enquiry.lastName}</td>
                 <td>{enquiry.message}</td>
