@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import MaintenanceRepair from '../pages/MaintenanceRepair';
 import { MaintenanceProvider } from '../context/MaintenanceContext';
 
-// 封装渲染方法以包含 Provider
 const renderWithProvider = () => {
   render(
     <MaintenanceProvider>
@@ -14,61 +13,36 @@ const renderWithProvider = () => {
 };
 
 describe('MaintenanceRepair Component', () => {
-  it('should display "Approve" and "Reject" buttons after setting status to "Completed"', () => {
+  it('should follow the correct workflow from Pending to Finished', () => {
     renderWithProvider();
 
-    // 点击 "Complete" 按钮以展示 "Approve" 和 "Reject" 按钮
-    fireEvent.click(screen.getByText(/Complete/i));
+    // 1. 初始状态为 "Pending"，Actions 显示 "Start" 和 "Complete"
+    expect(screen.getByText(/Pending/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Start/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Complete/i).length).toBeGreaterThan(0);
 
-    // 检查 "Approve" 和 "Reject" 按钮是否出现
+    // 点击 "Complete" 按钮将状态变为 "Completed"
+    fireEvent.click(screen.getAllByText(/Complete/i)[0]);
+    expect(screen.getByText(/Completed/i)).toBeInTheDocument();
     expect(screen.getByText(/Approve/i)).toBeInTheDocument();
     expect(screen.getByText(/Reject/i)).toBeInTheDocument();
-  });
 
-  it('should return status to "In Progress" when "Reject" button is clicked', () => {
-    renderWithProvider();
-
-    // 点击 "Complete" 按钮以展示 "Approve" 和 "Reject" 按钮
-    fireEvent.click(screen.getByText(/Complete/i));
-
-    // 点击 "Reject" 按钮
-    fireEvent.click(screen.getByText(/Reject/i));
-
-    // 检查状态是否回到 "In Progress"
-    expect(screen.getByText(/In Progress/i)).toBeInTheDocument();
-  });
-
-  it('should set status to "Finished" when "Approve" button is clicked after rejection', () => {
-    renderWithProvider();
-
-    // 点击 "Complete" 按钮以展示 "Approve" 和 "Reject" 按钮
-    fireEvent.click(screen.getByText(/Complete/i));
-
-    // 点击 "Reject" 按钮让状态回到 "In Progress"
+    // 2. 点击 "Reject" 按钮后状态变为 "In Progress"，显示 "Start" 和 "Complete"
     fireEvent.click(screen.getByText(/Reject/i));
     expect(screen.getByText(/In Progress/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Start/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Complete/i).length).toBeGreaterThan(0);
 
-    // 再次点击 "Complete" 按钮
-    fireEvent.click(screen.getByText(/Complete/i));
+    // 3. 点击 "Complete" 按钮再次变为 "Completed"，显示 "Approve" 和 "Reject"
+    fireEvent.click(screen.getAllByText(/Complete/i)[0]);
+    expect(screen.getByText(/Completed/i)).toBeInTheDocument();
+    expect(screen.getByText(/Approve/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reject/i)).toBeInTheDocument();
 
-    // 再点击 "Approve" 按钮将状态设置为 "Finished"
+    // 4. 点击 "Approve" 按钮后状态变为 "Finished"，并禁用按钮
     fireEvent.click(screen.getByText(/Approve/i));
-
-    // 检查状态是否变为 "Finished"
-    expect(screen.getByText(/Finished/i)).toBeInTheDocument();
-  });
-
-  it('should disable the "Finished" button after approval', () => {
-    renderWithProvider();
-
-    // 点击 "Complete" 按钮以展示 "Approve" 和 "Reject" 按钮
-    fireEvent.click(screen.getByText(/Complete/i));
-
-    // 点击 "Approve" 按钮
-    fireEvent.click(screen.getByText(/Approve/i));
-
-    // 检查 "Finished" 按钮是否被禁用
     const finishedButton = screen.getByText(/Finished/i);
+    expect(finishedButton).toBeInTheDocument();
     expect(finishedButton).toBeDisabled();
   });
 });
