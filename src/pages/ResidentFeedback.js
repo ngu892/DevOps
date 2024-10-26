@@ -91,36 +91,38 @@ function ResidentFeedback() {
 
         {/* History expansion area */}
         {showHistory && (
-          <div className="historyList">
-            <h3>Feedback History</h3>
-            {feedbackList.length === 0 ? (
-              <p>No feedback or complaints yet.</p>
-            ) : (
-              feedbackList.map((feedback, index) => (
-                <div key={index} className="feedback-item">
-                  <p><strong>Type:</strong> {feedback.type}</p>
-                  <p><strong>Status:</strong> {feedback.status}</p>
-                  <small>{feedback.timestamp.toString()}</small>
-                  <button onClick={() => setSelectedFeedback(feedback)}>View Details</button>
-                </div>
-              ))
-            )}
-          </div>
-        )}
+  <div className="historyList">
+    <h3>Feedback History</h3>
+    {feedbackList.length === 0 ? (
+      <p>No feedback or complaints yet.</p>
+    ) : (
+      feedbackList.map((feedback, index) => (
+        <div key={index} className="feedback-item">
+          <p><strong>Type:</strong> {feedback.type}</p>
+          <p><strong>Status:</strong> {feedback.status}</p>
+          <small className="feedback-time">{feedback.timestamp.toString()}</small>
+          <button onClick={() => setSelectedFeedback(feedback)}>View Details</button>
+        </div>
+      ))
+    )}
+  </div>
+)}
+
 
         {/* Detailed feedback information display area */}
         {selectedFeedback && (
-          <div className="feedbackDetails">
-            <h3>Feedback Details</h3>
-            <p><strong>Type:</strong> {selectedFeedback.type}</p>
-            <p>{selectedFeedback.text}</p>
-            <small>{selectedFeedback.timestamp.toString()}</small>
-            <p><strong>Status:</strong> {selectedFeedback.status}</p>
-            <p><strong>Manager Response:</strong> {selectedFeedback.managerResponse}</p> {/* 显示物业管理的回复 */}
-            <button onClick={() => setSelectedFeedback(null)}>Close</button>
-          </div>
-        )}
-      </div>
+  <div className="feedbackDetails">
+    <h3>Feedback Details</h3>
+    <p><strong>Type:</strong> {selectedFeedback.type}</p>
+    <p>{selectedFeedback.text}</p>
+    <small className="feedback-time">{selectedFeedback.timestamp.toString()}</small>
+    <p><strong>Status:</strong> {selectedFeedback.status}</p>
+    <p><strong>Manager Response:</strong> {selectedFeedback.managerResponse}</p>
+    <button onClick={() => setSelectedFeedback(null)}>Close</button>
+  </div>
+)}
+
+    </div>
 
       {/* Notification Area */}
       <div className="notificationContainer">
