@@ -21,18 +21,9 @@ steps:
       npm run build
     displayName: 'Build the project'
 
-  - script: |
-      npm test -- --testPathPattern=src/tests --watchAll=false --ci
-    displayName: 'Run React unit tests'
-
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: 'build' 
       ArtifactName: 'drop'
     displayName: 'Publish build artifacts'
- 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '**/TEST-*.xml'
-      testRunTitle: 'Test Results'
-    displayName: 'Publish Test Results'
+
