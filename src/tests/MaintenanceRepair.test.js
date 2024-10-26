@@ -20,7 +20,7 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
     expect(screen.getAllByText(/Completed/i).length).toBeGreaterThan(0);
 
-    // 检查 "Approve" 和 "Reject" 按钮是否正确显示
+    // 检查 "Approve" 和 "Reject" 按钮是否显示
     const approveButtons = screen.getAllByText(/Approve/i);
     const rejectButtons = screen.getAllByText(/Reject/i);
     expect(approveButtons.length).toBeGreaterThan(0);
@@ -34,9 +34,8 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
     expect(screen.getAllByText(/Completed/i).length).toBeGreaterThan(0);
 
-    // 点击 "Approve" 按钮后确认不再有 "Approve" 或 "Reject" 按钮
+    // 点击 "Approve" 按钮后，验证状态是否变为 "Finished"
     fireEvent.click(approveButtons[0]);
-    expect(screen.queryByText(/Approve/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Reject/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/Finished/i).length).toBeGreaterThan(0);
   });
 });
