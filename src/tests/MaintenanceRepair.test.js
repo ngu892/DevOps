@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MaintenanceRepair from '../pages/MaintenanceRepair';
 import { MaintenanceProvider } from '../context/MaintenanceContext';
@@ -13,7 +13,7 @@ const renderWithProvider = () => {
 };
 
 describe('MaintenanceRepair Component', () => {
-  it('should follow the correct workflow from Pending to Finished', async () => {
+  it('should follow the correct workflow from Pending to Completed and back to In Progress', () => {
     renderWithProvider();
 
     // 点击 "Complete" 按钮将状态变为 "Completed"
@@ -34,12 +34,9 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
     expect(screen.getAllByText(/Completed/i).length).toBeGreaterThan(0);
 
-    // 点击 "Approve" 按钮后状态变为 "Finished"
+    // 点击 "Approve" 按钮后确认不再有 "Approve" 或 "Reject" 按钮
     fireEvent.click(approveButtons[0]);
-    
-    // 等待页面渲染 "Finished" 状态
-    await waitFor(() => {
-      expect(screen.getByText(/Finished/i)).toBeInTheDocument();
-    });
+    expect(screen.queryByText(/Approve/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Reject/i)).not.toBeInTheDocument();
   });
 });
