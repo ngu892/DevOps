@@ -8,31 +8,38 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
   - task: NodeTool@0
     inputs:
       versionSpec: '16.x'
     displayName: 'Use Node.js 16.x'
 
+
   - script: |
       npm install
     displayName: 'Install dependencies'
+
 
   - script: |
       npm run build
     displayName: 'Build the project'
 
-  - script: |
-      npm test -- --testPathPattern=src/tests --watchAll=false --ci
-    displayName: 'Run unit tests'
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'build' 
-      ArtifactName: 'drop'
-    displayName: 'Publish build artifacts'
+- script: |
+    npm test -- --testPathPattern=src/tests --watchAll=false --ci
+  displayName: 'Run React unit tests'
 
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: '**/TEST-*.xml'
-      testRunTitle: 'Test Results'
-    displayName: 'Publish Test Results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathToPublish: 'build'
+    ArtifactName: 'drop'
+  displayName: 'Publish build artifacts'
+
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/TEST-*.xml'
+    testRunTitle: 'Test Results'
+  displayName: 'Publish Test Results'
+
