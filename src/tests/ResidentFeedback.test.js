@@ -2,31 +2,21 @@ import { render, screen, fireEvent, act } from '@testing-library/react';
 import ResidentFeedback from '../pages/ResidentFeedback.js';
 
 test('should allow users to submit feedback or complaints', () => {
-  act(() => {
-    render(<ResidentFeedback />);
-  });
+  render(<ResidentFeedback />);
 
-  
+  // 查询并填充反馈文本区域
   const textarea = screen.getByPlaceholderText('Enter your feedback or complaint...');
-  act(() => {
-    fireEvent.change(textarea, { target: { value: 'There is an issue with the elevator' } });
-  });
+  fireEvent.change(textarea, { target: { value: 'There is an issue with the elevator' } });
 
-  
+  // 查询并选择反馈类型
   const select = screen.getByDisplayValue('Complaint');
-  act(() => {
-    fireEvent.change(select, { target: { value: 'Suggestion' } });
-  });
+  fireEvent.change(select, { target: { value: 'Suggestion' } });
 
-  
+  // 点击提交按钮
   const submitButton = screen.getByText('Submit');
-  act(() => {
-    fireEvent.click(submitButton);
-  });
+  fireEvent.click(submitButton);
 
- 
+  // 验证反馈类型是否正确显示
   const feedbackType = screen.getByText(/Type:/);
   console.log('Feedback type text content:', feedbackType.textContent);  
-
- 
 });

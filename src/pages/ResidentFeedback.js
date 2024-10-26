@@ -5,14 +5,14 @@ function ResidentFeedback() {
   const [feedbackList, setFeedbackList] = useState([]);
   const [newFeedback, setNewFeedback] = useState('');
   const [feedbackType, setFeedbackType] = useState('Complaint');
-  const [showHistory, setShowHistory] = useState(false); // 控制历史记录的显示/隐藏
-  const [selectedFeedback, setSelectedFeedback] = useState(null); // 当前查看的详细反馈
-  const [notifications, setNotifications] = useState([]); // 用于显示已处理的通知
-  const [loading, setLoading] = useState(false); // 加载状态，用于显示等待
+  const [showHistory, setShowHistory] = useState(false); 
+  const [selectedFeedback, setSelectedFeedback] = useState(null); 
+  const [notifications, setNotifications] = useState([]); 
+  const [loading, setLoading] = useState(false); 
 
-  // 模拟物业管理回复
+ 
   const generateManagerResponse = (feedbackText) => {
-    // 根据反馈内容生成一个物业管理的回应
+    
     if (feedbackText.toLowerCase().includes("leaking")) {
       return "Thank you for reporting the leak. Our maintenance team will be dispatched to your room shortly to address the issue.";
     } else if (feedbackText.toLowerCase().includes("noise")) {
@@ -33,16 +33,16 @@ function ResidentFeedback() {
       type: feedbackType,
       timestamp: new Date(),
       status: 'Pending',
-      managerResponse: "Awaiting manager response...", // 初始化为“待处理”
+      managerResponse: "Awaiting manager response...", 
     };
 
     setFeedbackList([...feedbackList, newEntry]);
     setNewFeedback('');
     setFeedbackType('Complaint');
 
-    // 模拟物业回复，3秒后自动生成回复并将状态改为“已处理”
+    
     setTimeout(() => {
-      const managerResponse = generateManagerResponse(newEntry.text); // 生成物业管理的回答
+      const managerResponse = generateManagerResponse(newEntry.text); 
       setFeedbackList(prevList => 
         prevList.map(fb => 
           fb.timestamp === newEntry.timestamp 
@@ -51,7 +51,7 @@ function ResidentFeedback() {
         )
       );
       setNotifications(prevNotifications => [...prevNotifications, `Your feedback "${newEntry.text}" has been resolved with a response from management.`]);
-    }, 3000); // 3秒后处理完成
+    }, 3000); 
   };
 
   return (
@@ -84,12 +84,12 @@ function ResidentFeedback() {
           </button>
         </div>
 
-        {/* 查看历史记录按钮 */}
+        {/* View History Button */}
         <button onClick={() => setShowHistory(!showHistory)} className="history-button">
           {showHistory ? 'Hide History' : 'View History'}
         </button>
 
-        {/* 历史记录展开区域 */}
+        {/* History expansion area */}
         {showHistory && (
           <div className="historyList">
             <h3>Feedback History</h3>
@@ -108,7 +108,7 @@ function ResidentFeedback() {
           </div>
         )}
 
-        {/* 详细反馈信息显示区域 */}
+        {/* Detailed feedback information display area */}
         {selectedFeedback && (
           <div className="feedbackDetails">
             <h3>Feedback Details</h3>
@@ -122,7 +122,7 @@ function ResidentFeedback() {
         )}
       </div>
 
-      {/* 通知区域 */}
+      {/* Notification Area */}
       <div className="notificationContainer">
         <h2>Notifications</h2>
         {notifications.length === 0 ? (
