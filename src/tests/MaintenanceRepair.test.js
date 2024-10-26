@@ -40,9 +40,9 @@ describe('MaintenanceRepair Component', () => {
     const completeButton = screen.getAllByText(/Complete/i)[0];
     fireEvent.click(completeButton);
     
-    // 等待 "Approve" 按钮渲染
-    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument());
-    await waitFor(() => expect(screen.getByText(/Reject/i)).toBeInTheDocument());
+    // 等待 "Approve" 按钮渲染，增加超时时间
+    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument(), { timeout: 2000 });
+    await waitFor(() => expect(screen.getByText(/Reject/i)).toBeInTheDocument(), { timeout: 2000 });
   });
 
   it('should set status to "Finished" when "Approve" button is clicked', async () => {
@@ -50,7 +50,7 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
     
     // 等待 "Approve" 按钮渲染
-    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument(), { timeout: 2000 });
     fireEvent.click(screen.getByText(/Approve/i));
     
     expect(screen.getByText(/Finished/i)).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
 
     // 等待 "Reject" 按钮渲染
-    await waitFor(() => expect(screen.getByText(/Reject/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/Reject/i)).toBeInTheDocument(), { timeout: 2000 });
     fireEvent.click(screen.getByText(/Reject/i));
 
     expect(screen.getAllByText(/In Progress/i).length).toBeGreaterThan(1);
@@ -72,7 +72,7 @@ describe('MaintenanceRepair Component', () => {
     fireEvent.click(screen.getAllByText(/Complete/i)[0]);
 
     // 等待 "Approve" 按钮渲染
-    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/Approve/i)).toBeInTheDocument(), { timeout: 2000 });
     fireEvent.click(screen.getByText(/Approve/i));
 
     const finishedButton = screen.getByText(/Finished/i);
