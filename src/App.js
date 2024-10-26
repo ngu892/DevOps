@@ -24,48 +24,51 @@ import MaintenanceRequest from './pages/MaintenanceRequest';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { PaymentProvider } from './context/PaymentContext';
 import { MaintenanceProvider } from './context/MaintenanceContext';
+import { EnquiryProvider } from './components/EnquiryContext';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <MaintenanceProvider>
-          <PaymentProvider>
-            <NavBar />
-            <main>
+        <EnquiryProvider>
+          <MaintenanceProvider>
+            <PaymentProvider>
+              <NavBar />
+              <main>
               <Routes>
-            <Route path="/" Component={Home}></Route>
-            <Route path="/login" Component={Login}></Route>
-            <Route path="/register" Component={Register}></Route>
-            <Route path="/PropertyLogin" Component={PropertyLogin}></Route>
-            <Route path="/PropertyRegister" Component={PropertyRegister}></Route>
-            <Route path="/BuldingManager" Component={BuildingManager}></Route>
-            <Route path="/building-owner" Component={BuildingOwner}></Route>
-            <Route path="/manage-listings" Component={ManageListings}></Route>
-            <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
-            <Route path="/listings" Component={Listings}></Route>
-            <Route path="/enquiry" Component={Enquiry}></Route>
+              <Route path="/" Component={Home}></Route>
+              <Route path="/login" Component={Login}></Route>
+              <Route path="/register" Component={Register}></Route>
+              <Route path="/PropertyLogin" Component={PropertyLogin}></Route>
+              <Route path="/PropertyRegister" Component={PropertyRegister}></Route>
+              <Route path="/BuldingManager" Component={BuildingManager}></Route>
+              <Route path="/building-owner" Component={BuildingOwner}></Route>
+              <Route path="/manage-listings" Component={ManageListings}></Route>
+              <Route path="/manage-enquiries" Component={ManageEnquiries}></Route>
+              <Route path="/listings" Component={Listings}></Route>
+              <Route path="/enquiry" Component={Enquiry}></Route>
 
-            <Route path="/communication" element={<ResidentCommunication />} />
-            <Route path="/feedback" element={<ResidentFeedback />} />
+              <Route path="/communication" element={<ResidentCommunication />} />
+              <Route path="/feedback" element={<ResidentFeedback />} />
             
 //            ----------------- Junhao Kong ----------------------
-            <Route path="/propertyfee" element={<PropertyFee />} />
-            <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
-            <Route path="/MaintenanceRequest" element={<MaintenanceRequest />} />
-            <Route path="/paymentmethods" element={<PaymentMethods />} />
-            <Route path="/paymenthistory" element={<PaymentHistory />} />
+              <Route path="/propertyfee" element={<PropertyFee />} />
+              <Route path="/MaintenanceRepair" element={<MaintenanceRepair />} />
+              <Route path="/MaintenanceRequest" element={<MaintenanceRequest />} />
+              <Route path="/paymentmethods" element={<PaymentMethods />} />
+              <Route path="/paymenthistory" element={<PaymentHistory />} />
  //          ------------------ Junhao Kong ---------------------
             
-            <Route path="/Parking" element={<ParkingManagement />} />
-            <Route path="/Renovation" element={<RenovationManagement />} />
+              <Route path="/Parking" element={<ParkingManagement />} />
+              <Route path="/Renovation" element={<RenovationManagement />} />
             
-            </Routes>
-            </main>
-            <Footer />
-          </PaymentProvider>
-        </MaintenanceProvider>
+              </Routes>
+              </main>
+              <Footer />
+            </PaymentProvider>
+          </MaintenanceProvider>
+        </EnquiryProvider>
       </Router>
     </div>
   );

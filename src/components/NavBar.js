@@ -13,6 +13,10 @@ function NavBar() {
       <div className="rightBar">
         <Link to="/"> Home </Link>
         <Link to="/listings"> Listings </Link>
+
+        {/* testing purposes */}
+        <Link to="/building-owner">BuildingOwner</Link>
+
         <Link to="/contact"> Contact </Link>
         <Link to="/BuldingManager">  BuildingManager</Link>
 

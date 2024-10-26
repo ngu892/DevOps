@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useEnquiry } from '../components/EnquiryContext'
 import GreenTick from '../assets/greentick.png'
 import '../styles/Enquiry.css'
 
 function Enquiry() {
+
+  const { addEnquiry } = useEnquiry()
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -13,7 +16,16 @@ function Enquiry() {
 
   const handleEnquirySubmit = (e) => {
     e.preventDefault()
-    console.log("Form submitted:", { firstName, lastName, phone, email, message })
+    const newEnquiry = {
+      id: Date.now(), //id based on timestamp
+      firstName,
+      lastName,
+      phone,
+      email,
+      message,
+      responses: [] //array to hold responses
+    }
+    addEnquiry(newEnquiry)
     setIsSubmitted(true)
   }
 

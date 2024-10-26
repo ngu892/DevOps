@@ -25,6 +25,7 @@
     margin-bottom: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    border: 1px solid white;
 }
 
 .enquiryItem:hover {
@@ -43,4 +44,84 @@
 
 .enquiryDetails p {
     margin-bottom: 10px;
+}
+
+.responseSection{
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: white;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+  
+.sendResponseBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+  
+.responses {
+    margin-top: 10px;
+}
+  
+.myResponse {
+    color: blue;
+}
+  
+.userResponse {
+    color: black;
+}
+
+.enquiryTbl {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.enquiryTblHeader {
+    background-color: white;
+    font-weight: bold;
+}
+
+.enquiryTblCell, .enquiryTbl td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+}
+
+.enquiryTblCell {
+    background-color: #f5e879;
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
+  
+.enquiryTbl tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.unread {
+    cursor: pointer;
+    background-color: #f5e879 !important;
+}
+  
+.unread:hover {
+    background-color: #f5e879;
+}
+
+.read {
+    background-color: white;
 }
