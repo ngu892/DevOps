@@ -1,89 +1,157 @@
 /* ResidentFeedback.css */
 
+/* 页面整体样式 */
 .resident-feedback {
-  width: 60%;
-  margin: 0 auto;
   padding: 20px;
+  max-width: 800px;
+  margin: auto;
   font-family: Arial, sans-serif;
-}
-
-.headerContainer {
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-.headerContainer h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
   color: #333;
+}
+
+/* 页面标题样式 */
+.headerContainer h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #444;
 }
 
 .headerContainer p {
-  color: #777;
+  font-size: 14px;
+  color: #666;
 }
 
+/* 反馈输入区域样式 */
 .feedbackContainer {
-  background-color: #f9f9f9;
+  margin-top: 20px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.feedbackList {
-  margin-top: 20px;
-}
-
-.feedback {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
+  background-color: #f9f9f9;
   border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.feedback p {
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.feedback small {
-  display: block;
-  margin-top: 10px;
-  color: #999;
-}
-
-.newFeedback {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.newFeedback select, .newFeedback textarea {
+.newFeedback select,
+.newFeedback textarea {
   width: 100%;
+  margin-top: 10px;
   padding: 10px;
+  font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-size: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
 }
 
+/* 反馈输入和提交区域的按钮样式 */
 .newFeedback button {
-  width: 150px;
-  padding: 10px;
+  padding: 10px 20px;
   border: none;
-  background-color: #333;
+  border-radius: 8px;
+  background-color: #333; /* 黑色背景 */
   color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.newFeedback button:hover {
+  background-color: #555; /* 浅黑色悬停效果 */
+}
+
+/* 查看历史记录按钮样式 */
+.history-button {
+  padding: 8px 16px;
+  background-color: #333; /* 黑色背景 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.history-button:hover {
+  background-color: #555; /* 浅黑色悬停效果 */
+}
+
+/* 历史记录和详细反馈信息卡片样式 */
+.historyList,
+.feedbackDetails {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.historyList h3, .feedbackDetails h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.feedback-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.feedback-item:last-child {
+  border-bottom: none;
+}
+
+.feedback-item button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-item button:hover {
+  background-color: #218838;
+}
+
+.feedbackDetails p {
+  margin: 5px 0;
+}
+
+/* 关闭按钮样式 */
+.feedbackDetails button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.newFeedback button:hover {
-  background-color: #555;
+.feedbackDetails button:hover {
+  background-color: #c82333;
 }
 
-.newFeedback textarea {
-  height: 100px;
-  resize: vertical;
+/* 通知区域样式 */
+.notificationContainer {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e9f7ef;
+  border-left: 5px solid #28a745;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notificationContainer h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.notificationContainer p {
+  font-size: 14px;
+  color: #333;
 }
