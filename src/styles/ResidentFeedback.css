@@ -42,12 +42,12 @@
   box-sizing: border-box;
 }
 
-/* 反馈输入和提交区域的按钮样式 */
+
 .newFeedback button {
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
-  background-color: #333; /* 黑色背景 */
+  background-color: #333; 
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -55,10 +55,10 @@
 }
 
 .newFeedback button:hover {
-  background-color: #555; /* 浅黑色悬停效果 */
+  background-color: #555; 
 }
 
-/* 查看历史记录按钮样式 */
+
 .history-button {
   padding: 8px 16px;
   background-color: #333; /* 黑色背景 */
