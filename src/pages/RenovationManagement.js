@@ -8,25 +8,56 @@ function RenovationManagement() {
     { day: 'Wednesday', time: '1 PM - 3 PM', booked: false },
   ]);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [notification, setNotification] = useState(''); 
+  const [showRecords, setShowRecords] = useState(false); 
+  const [bookingRecords, setBookingRecords] = useState([]);
 
   const handleBooking = (index) => {
-    setTimeSlots(prevSlots =>
-      prevSlots.map((slot, i) => 
-        i === index ? { ...slot, booked: true } : slot
-      )
+    if (timeSlots[index].booked) {
+      setNotification('This slot is already booked.');
+      return;
+    }
+
+    const updatedSlots = timeSlots.map((slot, i) =>
+      i === index ? { ...slot, booked: true } : slot
     );
+
+    const newRecord = {
+      day: timeSlots[index].day,
+      time: timeSlots[index].time,
+      status: 'Booked',
+      date: new Date().toLocaleDateString()
+    };
+
+    setTimeSlots(updatedSlots);
     setSelectedSlot(timeSlots[index]);
+    setBookingRecords([...bookingRecords, newRecord]); 
+    setNotification(`You have successfully booked the slot on ${timeSlots[index].day} from ${timeSlots[index].time}.`);
   };
 
   const handleCancelBooking = () => {
-    if (window.confirm('Are you sure you want to cancel this booking?')) {
-      setTimeSlots(prevSlots =>
-        prevSlots.map(slot =>
+    if (selectedSlot) {
+      if (window.confirm('Are you sure you want to cancel this booking?')) {
+        const updatedSlots = timeSlots.map(slot =>
           slot === selectedSlot ? { ...slot, booked: false } : slot
-        )
-      );
-      setSelectedSlot(null);
+        );
+
+        const updatedRecords = bookingRecords.map(record =>
+          record.day === selectedSlot.day && record.time === selectedSlot.time
+            ? { ...record, status: 'Cancelled' }
+            : record
+        );
+
+        setTimeSlots(updatedSlots);
+        setBookingRecords(updatedRecords);
+        setNotification('Your booking has been cancelled.');
+        setSelectedSlot(null);
+      }
     }
+  };
+
+  const handleViewRecords = () => {
+    setShowRecords(!showRecords);
   };
 
   return (
@@ -41,7 +72,7 @@ function RenovationManagement() {
         <ul className="timeSlots">
           {timeSlots.map((slot, index) => (
             <li key={index} className={slot.booked ? 'booked' : ''}>
-              {slot.day}: {slot.time} 
+              {slot.day}: {slot.time}
               {!slot.booked ? (
                 <button onClick={() => handleBooking(index)}>Book</button>
               ) : (
@@ -50,6 +81,7 @@ function RenovationManagement() {
             </li>
           ))}
         </ul>
+        
         {selectedSlot && (
           <div className="bookingInfo">
             <h3>Your Booking</h3>
@@ -59,7 +91,29 @@ function RenovationManagement() {
             <button className="cancel-button" onClick={handleCancelBooking}>Cancel Booking</button>
           </div>
         )}
+        <button onClick={handleViewRecords}>
+          {showRecords ? 'Hide Booking Records' : 'View Booking Records'}
+        </button>
       </div>
+
+      {notification && (
+        <div className="notificationContainer">
+          <p>{notification}</p>
+        </div>
+      )}
+
+      {showRecords && (
+        <div className="recordsContainer">
+          <h3>Booking Records</h3>
+          <ul>
+            {bookingRecords.map((record, index) => (
+              <li key={index}>
+                Day: {record.day}, Time: {record.time}, Date: {record.date}, Status: {record.status}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
