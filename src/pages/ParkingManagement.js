@@ -8,11 +8,22 @@ function ParkingManagement() {
   const [availableSpaces, setAvailableSpaces] = useState(50);
   const [notification, setNotification] = useState('');
   const [parkedCars, setParkedCars] = useState({});
-  
+  const [showRecords, setShowRecords] = useState(false); 
+
   const navigate = useNavigate();
 
   const handleLicensePlateChange = (e) => {
-    setLicensePlate(e.target.value);
+    const input = e.target.value.toUpperCase();
+    
+    const licensePlatePattern = /^[A-Z]{2,3}\d{1,4}$/;
+
+    
+    if (licensePlatePattern.test(input) || input === '' || /^[A-Z]{0,3}\d{0,4}$/.test(input)) {
+      setLicensePlate(input);
+      setNotification('');  
+    } else {
+      setNotification('Invalid license plate format. Expected format: 2-3 letters followed by 1-4 numbers.');
+    }
   };
 
   const handleParking = () => {
@@ -32,7 +43,10 @@ function ParkingManagement() {
     }
 
     const startTime = new Date();
-    setParkedCars({ ...parkedCars, [licensePlate]: { startTime } });
+    setParkedCars({
+      ...parkedCars,
+      [licensePlate]: { startTime, cost: 0 }
+    });
     setAvailableSpaces(availableSpaces - 1);
     setNotification('Car parked successfully!');
   };
@@ -54,15 +68,20 @@ function ParkingManagement() {
     }
 
     setAvailableSpaces(availableSpaces + 1);
-    const updatedParkedCars = { ...parkedCars };
-    delete updatedParkedCars[licensePlate];
-    setParkedCars(updatedParkedCars);
+    setParkedCars(prevCars => ({
+      ...prevCars,
+      [licensePlate]: { ...prevCars[licensePlate], cost }
+    }));
 
     setNotification(`Please pay $${cost}.`);
 
     if (cost > 0) {
       navigate('/pay', { state: { cost, licensePlate } });
     }
+  };
+
+  const handleViewRecords = () => {
+    setShowRecords(!showRecords);
   };
 
   return (
@@ -82,6 +101,9 @@ function ParkingManagement() {
         />
         <button onClick={handleParking}>Park</button>
         <button onClick={handleExit}>Exit</button>
+        <button onClick={handleViewRecords}>
+          {showRecords ? 'Hide Records' : 'View Parking Records'}
+        </button>
 
         <h2>Available Spaces: {availableSpaces}</h2>
       </div>
@@ -90,6 +112,19 @@ function ParkingManagement() {
         <h2>Important Notifications</h2>
         <p>{notification}</p>
       </div>
+
+      {showRecords && (
+        <div className="recordsContainer">
+          <h3>Parking Records</h3>
+          <ul>
+            {Object.entries(parkedCars).map(([plate, details]) => (
+              <li key={plate}>
+                License Plate: {plate} | Parked Time: {details.startTime.toLocaleTimeString()} | Cost: ${details.cost}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
