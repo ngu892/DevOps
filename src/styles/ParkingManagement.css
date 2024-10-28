@@ -1,3 +1,5 @@
+/* ParkingManagement.css */
+
 .parking-management {
   padding: 20px;
   background-color: #ffffff;
@@ -44,6 +46,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   margin-right: 10px;
+  transition: background-color 0.3s;
 }
 
 button:hover {
@@ -80,3 +83,45 @@ button:hover {
   color: #333;
   margin-top: 15px;
 }
+
+
+.notificationContainer p.success {
+  color: green;
+}
+
+.notificationContainer p.error {
+  color: red;
+  font-weight: bold;
+}
+
+/*add the history record*/
+
+.recordsContainer {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.recordsContainer h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.recordsContainer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recordsContainer li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+}
+
+.recordsContainer li:last-child {
+  border-bottom: none;
+}
+
+
