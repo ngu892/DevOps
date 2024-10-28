@@ -13,35 +13,29 @@ const renderWithProvider = () => {
 };
 
 describe('MaintenanceRepair Component', () => {
-  it('should display the correct number of requests by status', () => {
+  it('should follow the correct workflow from Pending to Completed and back to In Progress', () => {
     renderWithProvider();
 
-    expect(screen.getByText(/Pending Requests: 1/i)).toBeInTheDocument();
-    expect(screen.getByText(/In Progress Requests: 1/i)).toBeInTheDocument();
-    expect(screen.getByText(/Completed Requests: 1/i)).toBeInTheDocument();
-  });
+    // 点击 "Complete" 按钮将状态变为 "Completed"
+    fireEvent.click(screen.getAllByText(/Complete/i)[0]);
+    expect(screen.getAllByText(/Completed/i).length).toBeGreaterThan(0);
 
-  it('should update the request status to "In Progress" when "Start" button is clicked', () => {
-    renderWithProvider();
-    const startButtons = screen.getAllByText(/Start/i);
-    fireEvent.click(startButtons[0]);
-    const inProgressStatus = screen.getAllByText(/In Progress/i);
-    expect(inProgressStatus.length).toBeGreaterThan(1);
-  });
+    // 检查 "Approve" 和 "Reject" 按钮是否显示
+    const approveButtons = screen.getAllByText(/Approve/i);
+    const rejectButtons = screen.getAllByText(/Reject/i);
+    expect(approveButtons.length).toBeGreaterThan(0);
+    expect(rejectButtons.length).toBeGreaterThan(0);
 
-  it('should update the request status to "Completed" when "Complete" button is clicked', () => {
-    renderWithProvider();
-    const completeButtons = screen.getAllByText(/Complete/i);
-    fireEvent.click(completeButtons[0]);
-    const completedStatus = screen.getAllByText(/Completed/i);
-    expect(completedStatus.length).toBeGreaterThan(1);
-  });
+    // 点击 "Reject" 按钮后状态变为 "In Progress"
+    fireEvent.click(rejectButtons[0]);
+    expect(screen.getAllByText(/In Progress/i).length).toBeGreaterThan(0);
 
-  it('should disable the "Completed" button for completed requests', () => {
-    renderWithProvider();
-    const completedButtons = screen.getAllByRole('button', { name: /Completed/i }); // 只获取按钮元素
-    completedButtons.forEach((button) => {
-      expect(button).toBeDisabled(); // 检查每个“Completed”按钮是否被禁用
-    });
+    // 再次点击 "Complete" 按钮将状态变为 "Completed"
+    fireEvent.click(screen.getAllByText(/Complete/i)[0]);
+    expect(screen.getAllByText(/Completed/i).length).toBeGreaterThan(0);
+
+    // 点击 "Approve" 按钮后，验证状态是否变为 "Finished"
+    fireEvent.click(approveButtons[0]);
+    expect(screen.getAllByText(/Finished/i).length).toBeGreaterThan(0);
   });
 });

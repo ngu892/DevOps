@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import { useMaintenance } from '../context/MaintenanceContext';
-import '../styles/MaintenanceRequest.css';  
+import forbiddenWords from '../assets/forbiddenWords'; 
+import '../styles/MaintenanceRequest.css';
 
 const MaintenanceRequest = () => {
   const [newRequest, setNewRequest] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { requests, addRequest } = useMaintenance();
 
+  const containsForbiddenWords = (text) => {
+    
+    return forbiddenWords.some(word => text.toLowerCase().includes(word));
+  };
+
   const handleSubmitRequest = () => {
-    if (newRequest) {
+    if (!newRequest.trim()) {
+      setErrorMessage('Please enter a description for the issue.');
+    } else if (containsForbiddenWords(newRequest)) {
+      setErrorMessage('Your description contains inappropriate language. Please remove it.');
+    } else {
       addRequest(newRequest);
       setNewRequest('');
+      setErrorMessage('');
     }
   };
 
   return (
     <div className="maintenance-request-container">
-      {/* <h2>Submit a Maintenance Request</h2> */}
-
       <h2>Your Maintenance Requests</h2>
       <table>
         <thead>
@@ -46,6 +56,8 @@ const MaintenanceRequest = () => {
         />
         <button onClick={handleSubmitRequest}>Submit</button>
       </div>
+      
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 };

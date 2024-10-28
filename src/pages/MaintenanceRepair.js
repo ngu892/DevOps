@@ -1,17 +1,19 @@
 import React from 'react';
-import { useMaintenance } from '../context/MaintenanceContext'; 
+import { useMaintenance } from '../context/MaintenanceContext';
+import NotificationCenter from '../components/NotificationCenter'; // 引入 NotificationCenter
 
 const MaintenanceRepair = () => {
-
   const { requests, updateStatus } = useMaintenance();
 
- 
   const pendingCount = requests.filter(request => request.status === 'Pending').length;
   const inProgressCount = requests.filter(request => request.status === 'In Progress').length;
   const completedCount = requests.filter(request => request.status === 'Completed').length;
 
   return (
     <div>
+      {/* 添加 NotificationCenter 到页面顶部 */}
+      <NotificationCenter />
+
       <h2>Maintenance and Repair Management</h2>
       <p>Handles daily maintenance and repair requests for the property, tracks the progress of issue resolution.</p>
 
@@ -31,8 +33,13 @@ const MaintenanceRepair = () => {
               <td>{request.date}</td>
               <td>{request.status}</td>
               <td>
-                {request.status === 'Completed' ? (
-                  <button disabled>Completed</button>
+                {request.status === 'Finished' ? (
+                  <button disabled>Finished</button>
+                ) : request.status === 'Completed' ? (
+                  <>
+                    <button onClick={() => updateStatus(request.id, 'Finished')}>Approve</button>
+                    <button onClick={() => updateStatus(request.id, 'In Progress')}>Reject</button>
+                  </>
                 ) : (
                   <>
                     <button onClick={() => updateStatus(request.id, 'In Progress')}>Start</button>
