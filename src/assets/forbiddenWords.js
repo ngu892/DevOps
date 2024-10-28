@@ -8,7 +8,6 @@ const forbiddenWords = [
     "bastard",
     "freak",
     "suck",
-    "trash",
     "loser",
     "nigger",
     "fuck",
