@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMaintenance } from '../context/MaintenanceContext';
-import NotificationCenter from '../components/NotificationCenter'; // 引入 NotificationCenter
+import NotificationCenter from '../components/NotificationCenter'; 
 
 const MaintenanceRepair = () => {
   const { requests, updateStatus } = useMaintenance();
@@ -11,7 +11,7 @@ const MaintenanceRepair = () => {
 
   return (
     <div>
-      {/* 添加 NotificationCenter 到页面顶部 */}
+      
       <NotificationCenter />
 
       <h2>Maintenance and Repair Management</h2>
